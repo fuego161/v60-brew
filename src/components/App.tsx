@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import { Preparation } from '../stages/Preparation';
 
-interface BrewRatio {
-	coffee: number;
-	water: number;
-}
-
-interface Bloom {
-	recommended: number;
-	maximum: number;
-}
-
-interface SixtyPercent {
-	total: number;
-	pour: number;
-}
-
 const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
 	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
 };
