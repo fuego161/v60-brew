@@ -14,8 +14,8 @@ export const SixtyPercentPour = ({ bloom, sixtyPercent }: SixtyPercentPourProps)
 
 			<ul className="stage__list">
 				<li className="stage__item">
-					Add water, aiming for 60% of total brew weight. Since you already added bloom water ({bloom.recommended}g), add{' '}
-					{sixtyPercent.pour}g in 30s
+					Add water, aiming for 60% of total brew weight ({sixtyPercent.total}g). Since you already added bloom water ({bloom.recommended}
+					g), add {sixtyPercent.pour}g in 30s
 				</li>
 				<li className="stage__item stage__item--info">This phase is critical!</li>
 			</ul>
