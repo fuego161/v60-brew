@@ -55,9 +55,40 @@ export const App = (): JSX.Element => {
 	// Set what will be the final pour amount
 	const [finalPour, setFinalPour] = useState(calcFinalPour(brewWeight, sixtyPercent));
 
+	const handleCoffeeChange = (target: HTMLInputElement): void => {
+		// Get the updated coffee value
+		const updatedCoffeeValue = parseInt(target.value);
+
+		// Store the updated pour data
+		const updatedBrewWeight = calcBrewWeight(brewRatio, updatedCoffeeValue);
+		const updatedBloom = calcBloom(updatedCoffeeValue);
+		const updatedSixtyPercent = calcSixtyPercent(updatedBrewWeight, updatedBloom);
+		const updatedFinalPour = calcFinalPour(updatedBrewWeight, updatedSixtyPercent);
+
+		// Update the pour related data
+		setCoffeeWeight(updatedCoffeeValue);
+		setBrewWeight(updatedBrewWeight);
+		setBloom(updatedBloom);
+		setSixtyPercent(updatedSixtyPercent);
+		setFinalPour(updatedFinalPour);
+	};
+
 	return (
 		<div>
 			<h1>James Hoffmann&apos;s Ultimate V60 Technique</h1>
+
+			<label htmlFor="coffee">
+				Coffee (g)
+				<input
+					id="coffee"
+					name="coffee"
+					type="number"
+					min="6"
+					max="60"
+					defaultValue={defaultCoffeeWeight}
+					onChange={(e) => handleCoffeeChange(e.currentTarget)}
+				/>
+			</label>
 
 			<Preparation coffeeWeight={coffeeWeight} />
 
