@@ -10,7 +10,9 @@ export const Preparation = ({ coffeeWeight }: PreparationProps): JSX.Element => 
 			<h2 className="stage__title">Preparation</h2>
 
 			<ul className="stage__list">
-				<li className="stage__item">Grind {coffeeWeight}g of coffee</li>
+				<li className="stage__item">
+					Grind <strong>{coffeeWeight}g</strong> of coffee
+				</li>
 				<li className="stage__item">Rinse your paper filter with water just off the boil</li>
 				<li className="stage__item stage__item--info">This removes any paper taste and preheats the brewer</li>
 				<li className="stage__item">Add your coffee grounds to the V60</li>

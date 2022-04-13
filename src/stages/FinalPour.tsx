@@ -13,8 +13,12 @@ export const FinalPour = ({ finalPour, brewWeight }: FinalPourProps): JSX.Elemen
 			<p className="stage__time">Timer - 1:15</p>
 
 			<ul className="stage__list">
-				<li className="stage__item">Over the next 30 seconds, pour {finalPour}g of water.</li>
-				<li className="stage__item">Your total brew weight should be {brewWeight}g</li>
+				<li className="stage__item">
+					Over the next 30 seconds, pour <strong>{finalPour}g</strong> of water.
+				</li>
+				<li className="stage__item">
+					Your total brew weight should be <strong>{brewWeight}g</strong>
+				</li>
 			</ul>
 		</div>
 	);

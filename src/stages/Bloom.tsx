@@ -12,8 +12,12 @@ export const Bloom = ({ bloom }: BloomProps): JSX.Element => {
 			<p className="stage__time">Timer - 0:00</p>
 
 			<ul className="stage__list">
-				<li className="stage__item">Add {bloom.recommended}g of bloom water</li>
-				<li className="stage__item stage__item--info">Do not pour more than three times the amount of coffee used ({bloom.maximum}g)</li>
+				<li className="stage__item">
+					Add <strong>{bloom.recommended}g</strong> of bloom water
+				</li>
+				<li className="stage__item stage__item--info">
+					Do not pour more than three times the amount of coffee used (<strong>{bloom.maximum}g</strong>)
+				</li>
 				<li className="stage__item">Swirl the coffee slurry until evenly mixed</li>
 				<li className="stage__item stage__item--info">The aim is to wet all the coffee grounds by evenly mixing bloom water and coffee</li>
 				<li className="stage__item">Bloom for up to 45s </li>
