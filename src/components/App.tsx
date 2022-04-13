@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Bloom } from '../stages/Bloom';
+import { FinalPour } from '../stages/FinalPour';
+import { FinishingUp } from '../stages/FinishingUp';
 import { Preparation } from '../stages/Preparation';
+import { SixtyPercentPour } from '../stages/SixtyPercentPour';
 
 const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
 	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
@@ -60,49 +63,11 @@ export const App = (): JSX.Element => {
 
 			<Bloom bloom={bloom} />
 
-			<div className="stage">
-				<h2 className="stage__title">60% Pour</h2>
+			<SixtyPercentPour bloom={bloom} sixtyPercent={sixtyPercent} />
 
-				<p className="stage__time">Timer - 0:45</p>
+			<FinalPour finalPour={finalPour} brewWeight={brewWeight} />
 
-				<ul className="stage__list">
-					<li className="stage__item">
-						Add water, aiming for 60% of total brew weight. Since you already added bloom water ({bloom.recommended}g), add{' '}
-						{sixtyPercent.pour}g in 30s
-					</li>
-					<li className="stage__item stage__item--info">This phase is critical!</li>
-				</ul>
-			</div>
-
-			<div className="stage">
-				<h2 className="stage__title">Final Pour</h2>
-
-				<p className="stage__time">Timer - 1:15</p>
-
-				<ul className="stage__list">
-					<li className="stage__item">Over the next 30 seconds, pour {finalPour}g of water.</li>
-					<li className="stage__item">Your total brew weight should be {brewWeight}g</li>
-				</ul>
-			</div>
-
-			<div className="stage">
-				<h2 className="stage__title">Finishing Up</h2>
-
-				<p className="stage__time">Timer - 1:45</p>
-
-				<ul className="stage__list">
-					<li className="stage__item">With a spoon, stir clockwise once, and once anticlockwise</li>
-					<li className="stage__item">This knocks off grounds from side wall</li>
-					<li className="stage__item stage__item--info">Allow the V60 to drain a little</li>
-					<li className="stage__item">Give the V60 a gentle swirl</li>
-					<li className="stage__item stage__item--info">
-						This helps obtain a flat coffee bed at the bottom of the V60 for even an extraction
-					</li>
-					<li className="stage__item">Let brew drawdown</li>
-					<li className="stage__item stage__item--info">The higher the temperature, the faster the drawdown</li>
-					<li className="stage__item">Aim to have your drawdown completed by 3:30</li>
-				</ul>
-			</div>
+			<FinishingUp />
 		</div>
 	);
 };
