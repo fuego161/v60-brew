@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface BrewRatio {
 	coffee: number;
@@ -10,6 +10,35 @@ interface Bloom {
 	maximum: number;
 }
 
+interface SixtyPercent {
+	total: number;
+	pour: number;
+}
+
+const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
+	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
+};
+
+const calcBloom = (coffeeWeight: number): Bloom => {
+	return {
+		recommended: coffeeWeight * 2,
+		maximum: coffeeWeight * 3,
+	};
+};
+
+const calcSixtyPercent = (brewWeight: number, bloom: Bloom): SixtyPercent => {
+	const sixtyPercentTotal = Math.floor((60 / 100) * brewWeight);
+
+	return {
+		total: sixtyPercentTotal,
+		pour: sixtyPercentTotal - bloom.recommended,
+	};
+};
+
+const calcFinalPour = (brewWeight: number, sixtyPercent: SixtyPercent): number => {
+	return brewWeight - sixtyPercent.total;
+};
+
 export const App = (): JSX.Element => {
 	// Set the brew ratio - 60g/L
 	const brewRatio: BrewRatio = {
@@ -17,26 +46,24 @@ export const App = (): JSX.Element => {
 		water: 250,
 	};
 
+	// Set the default coffeeWeight
+	const defaultCoffeeWeight = 30;
+
 	// Set how much coffee is being used
 	// TODO: Update this value with user input
-	const coffeeWeight = 30;
+	const [coffeeWeight, setCoffeeWeight] = useState(defaultCoffeeWeight);
 
 	// Set the brewWeight using the brewRatio
-	const brewWeight = Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
+	const [brewWeight, setBrewWeight] = useState(calcBrewWeight(brewRatio, coffeeWeight));
 
 	// Set bloom water values
-	const bloom: Bloom = {
-		recommended: coffeeWeight * 2,
-		maximum: coffeeWeight * 3,
-	};
+	const [bloom, setBloom] = useState(calcBloom(coffeeWeight));
 
 	// Set the 60% of the total pour
-	const sixtyPercentTotal = Math.floor((60 / 100) * brewWeight);
-	// Set how much will be poured during the 60% stage
-	const sixtyPercentPour = sixtyPercentTotal - bloom.recommended;
+	const [sixtyPercent, setSixtyPercent] = useState(calcSixtyPercent(brewWeight, bloom));
 
 	// Set what will be the final pour amount
-	const finalPour = brewWeight - sixtyPercentTotal;
+	const [finalPour, setFinalPour] = useState(calcFinalPour(brewWeight, sixtyPercent));
 
 	return (
 		<div>
@@ -81,7 +108,7 @@ export const App = (): JSX.Element => {
 				<ul className="stage__list">
 					<li className="stage__item">
 						Add water, aiming for 60% of total brew weight. Since you already added bloom water ({bloom.recommended}g), add{' '}
-						{sixtyPercentPour}g in 30s
+						{sixtyPercent.pour}g in 30s
 					</li>
 					<li className="stage__item stage__item--info">This phase is critical!</li>
 				</ul>
