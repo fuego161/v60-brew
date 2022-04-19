@@ -1,0 +1,23 @@
+.instructions {
+	&__item {
+		margin-top: .75em;
+
+		strong {
+			color: color(coffee-light);
+			font-weight: 500;
+		}
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+
+	&__information {
+		display: block;
+		margin-top: .15em;
+		opacity: .7;
+		font-size: 95%;
+		line-height: 1.45;
+		font-style: italic;
+	}
+}

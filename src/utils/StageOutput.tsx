@@ -15,7 +15,7 @@ const createInstructionsList = (stage: StageContent): JSX.Element => {
 	// If the timer is present, add it to the list first
 	if (timer) {
 		instructionList.push(
-			<li className="stage__item stage__item--timer" key="timer">
+			<li className="instructions__item instructions__item--timer" key="timer">
 				{timer}
 			</li>
 		);
@@ -27,13 +27,13 @@ const createInstructionsList = (stage: StageContent): JSX.Element => {
 
 		// Store the instruction as an li in the list array
 		instructionList.push(
-			<li className="stage__item" key={index}>
-				{copy} {information && <span className="stage__information">{information}</span>}
+			<li className="instructions__item" key={index}>
+				{copy} {information && <span className="instructions__information">{information}</span>}
 			</li>
 		);
 	}
 
-	return <ol className="stage__list">{instructionList}</ol>;
+	return <ol className="stage__instructions instructions">{instructionList}</ol>;
 };
 
 /**
