@@ -1,17 +1,12 @@
 // Third Party
 @import '~modern-normalize/modern-normalize';
 
+// Utils
+@import 'utils/variables';
 
-$colors: (
-	text: #f2f2f2,
-	body: #1f1f1f,
-);
+// Base
+@import 'base/general';
+@import 'base/typography';
 
-@function color($color-name) {
-	@return map-get($colors, $color-name);
-}
-
-body {
-	background-color: color(body);
-	color: color(text);
-}
+// Components
+@import 'components/intro';
