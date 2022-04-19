@@ -1,5 +1,5 @@
-// Formats\
-$best_support: (
+// Formats
+$best-support: (
 	// IE6-IE8
 	('eot?#iefix', 'embedded-opentype'),
 	// Super Modern Browsers
@@ -12,7 +12,7 @@ $best_support: (
 	('svg#Rubik', 'svg')
 );
 
-$modern_browsers: (
+$modern-browsers: (
 	// Super Modern Browsers
 	('woff2', 'woff2'),
 	// Modern Browsers
@@ -28,7 +28,7 @@ $rubik: (
 		('regular', 400, normal),
 		('500', 500, normal),
 	),
-	'formats': $best_support,
+	'formats': $best-support,
 );
 
 @include font-face($rubik);

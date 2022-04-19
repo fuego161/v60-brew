@@ -2,6 +2,7 @@
 	"name": "v60",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://tckr.uk/v60",
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.4",
 		"@testing-library/react": "^13.0.1",
@@ -22,6 +23,9 @@
 		"react-dom": "^18.0.0",
 		"react-scripts": "5.0.1",
 		"sass": "^1.50.0",
+		"stylelint": "^14.7.1",
+		"stylelint-config-prettier": "^9.0.3",
+		"stylelint-config-recommended-scss": "^6.0.0",
 		"typescript": "^4.6.3",
 		"web-vitals": "^2.1.4"
 	},
@@ -29,7 +33,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"lint:scss": "stylelint \"./src/assets/scss/**/*.scss\" --fix"
 	},
 	"eslintConfig": {
 		"extends": [
