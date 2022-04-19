@@ -5,6 +5,7 @@ import { FinishingUp } from '../stages/FinishingUp';
 import { Preparation } from '../stages/Preparation';
 import { SixtyPercentPour } from '../stages/SixtyPercentPour';
 import { CoffeeControl } from './CoffeeControl';
+import { Intro } from './Intro';
 
 const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
 	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
@@ -76,7 +77,7 @@ export const App = (): JSX.Element => {
 
 	return (
 		<div>
-			<h1>James Hoffmann&apos;s Ultimate V60 Technique</h1>
+			<Intro />
 
 			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} handleCoffeeChange={handleCoffeeChange} />
 
