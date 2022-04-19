@@ -4,28 +4,6 @@ interface PreparationProps {
 	coffeeWeight: number;
 }
 
-interface Timer {
-	present: boolean;
-	time?: string;
-}
-
-interface Information {
-	present: boolean;
-	copy?: string | JSX.Element;
-}
-
-interface Instruction {
-	copy: string | JSX.Element;
-	information: Information;
-}
-
-interface StageContent {
-	count: string;
-	title: string;
-	timer: Timer;
-	instructions: Array<Instruction>;
-}
-
 const outputStageInstructions = (timer: Timer, instructions: Array<Instruction>): JSX.Element => {
 	const instructionList: Array<JSX.Element> = [];
 
