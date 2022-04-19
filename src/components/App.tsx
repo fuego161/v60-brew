@@ -76,7 +76,7 @@ export const App = (): JSX.Element => {
 	};
 
 	return (
-		<div>
+		<div className="wrapper">
 			<Intro />
 
 			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} brewWeight={brewWeight} handleCoffeeChange={handleCoffeeChange} />
