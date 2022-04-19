@@ -85,7 +85,7 @@ export const App = (): JSX.Element => {
 
 			<Bloom bloom={bloom} />
 
-			<SixtyPercentPour bloom={bloom} sixtyPercent={sixtyPercent} />
+			<SixtyPercentPour sixtyPercent={sixtyPercent} />
 
 			<FinalPour finalPour={finalPour} brewWeight={brewWeight} />
 

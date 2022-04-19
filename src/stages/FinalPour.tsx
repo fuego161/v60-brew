@@ -1,4 +1,5 @@
 import React from 'react';
+import { StageOutput } from '../utils';
 
 interface FinalPourProps {
 	finalPour: number;
@@ -6,20 +7,25 @@ interface FinalPourProps {
 }
 
 export const FinalPour = ({ finalPour, brewWeight }: FinalPourProps): JSX.Element => {
-	return (
-		<div className="stage">
-			<h2 className="stage__title">Final Pour</h2>
+	const stage: StageContent = {
+		count: 'four',
+		title: 'Final Pour',
+		timer: '1:15',
+		instructions: [
+			{
+				copy: (
+					<>
+						Over the next 30s, pour the final <strong>{finalPour}g</strong> of water
+					</>
+				),
+				information: (
+					<>
+						This will take you to your final brew weight of <strong>{brewWeight}g</strong>
+					</>
+				),
+			},
+		],
+	};
 
-			<p className="stage__time">Timer - 1:15</p>
-
-			<ul className="stage__list">
-				<li className="stage__item">
-					Over the next 30 seconds, pour <strong>{finalPour}g</strong> of water.
-				</li>
-				<li className="stage__item">
-					Your total brew weight should be <strong>{brewWeight}g</strong>
-				</li>
-			</ul>
-		</div>
-	);
+	return StageOutput(stage);
 };
