@@ -1,0 +1,34 @@
+// Formats\
+$best_support: (
+	// IE6-IE8
+	('eot?#iefix', 'embedded-opentype'),
+	// Super Modern Browsers
+	('woff2', 'woff2'),
+	// Modern Browsers
+	('woff', 'woff'),
+	// Safari, Android, iOS
+	('ttf', 'truetype'),
+	// Legacy iOS
+	('svg#Rubik', 'svg')
+);
+
+$modern_browsers: (
+	// Super Modern Browsers
+	('woff2', 'woff2'),
+	// Modern Browsers
+	('woff', 'woff')
+);
+
+// Font Maps
+$rubik: (
+	'name': 'Rubik',
+	'path': '../../assets/fonts/rubik/rubik-v19-latin',
+	'types': (
+		('300', 300, normal),
+		('regular', 400, normal),
+		('500', 500, normal),
+	),
+	'formats': $best_support,
+);
+
+@include font-face($rubik);

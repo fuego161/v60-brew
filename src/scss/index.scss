@@ -2,10 +2,12 @@
 @import '~modern-normalize/modern-normalize';
 
 // Utils
+@import 'utils/mixins';
 @import 'utils/variables';
 
 // Base
 @import 'base/general';
+@import 'base/fonts';
 @import 'base/typography';
 
 // Components

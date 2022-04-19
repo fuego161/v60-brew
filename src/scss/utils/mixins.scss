@@ -1,0 +1,39 @@
+@use 'sass:map';
+@use 'sass:list';
+
+// A mixin to output font face decelerations
+@mixin font-face($font) {
+	// Get the name of the font face
+	$name: map.get($font, 'name');
+	// Get the path for the font face
+	$path: map.get($font, 'path');
+	// Get the formats of the font face
+	$formats: map.get($font, 'formats');
+
+	// Get the types we want to declare for the font faces
+	// type: the font type used within the path ('regular', 500, 600)
+	// weight: the weight of the font used for font-weight
+	// style: the style of the font used for font-style
+	$types: map.get($font, 'types');
+
+	// Loop over each type to create each font face deceleration
+	@each $type, $weight, $style in $types {
+		// Start the src declaration with an old IE fix
+		$src: local('0');
+
+		// Loop over each format and append the src to the $src variable
+		@each $ext, $format in $formats {
+			$src: list.append($src, url('#{$path}-#{$type}.#{$ext}') format('#{$format}'), comma);
+		}
+
+		// Declare the font face with all the variables retrieved and created above
+		@font-face {
+			font-family: $name;
+			font-style: $style;
+			font-weight: $weight;
+			font-display: swap;
+			src: url('#{$path}-#{$type}.eot');
+			src: $src;
+		}
+	}
+}
