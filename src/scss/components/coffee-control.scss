@@ -1,0 +1,22 @@
+.coffee {
+	background-color: color(coffee-dark);
+	border-radius: 10px;
+
+	&__selector {
+		display: flex;
+		justify-content: space-between;
+		padding: .75em 1em;
+		background-color: color(coffee-light);
+		border-radius: 10px 10px 0 0;
+		color: color(coffee-dark);
+	}
+
+	&__label {
+		font-size: 1.35rem;
+		font-weight: 400;
+	}
+
+	&__output {
+		padding: .75em 1em;
+	}
+}
