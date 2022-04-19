@@ -1,6 +1,39 @@
 @use 'sass:map';
 @use 'sass:list';
 
+@mixin breakpoint($point) {
+	@if $point == desktop {
+		// 1120px
+		@media (min-width: 70em) {
+			@content;
+		}
+	} @else if $point == laptop {
+		// 1024px
+		@media (min-width: 64em) {
+			@content;
+		}
+	} @else if $point == tablet {
+		// 800px
+		@media (min-width: 50em) {
+			@content;
+		}
+	} @else if $point == phablet {
+		// 600px
+		@media (min-width: 37.5em) {
+			@content;
+		}
+	} @else if $point == mobileonly {
+		// 600px
+		@media (max-width: 37.5em) {
+			@content;
+		}
+	} @else {
+		@media (min-width: $point) {
+			@content;
+		}
+	}
+}
+
 // A mixin to output font face decelerations
 @mixin font-face($font) {
 	// Get the name of the font face
