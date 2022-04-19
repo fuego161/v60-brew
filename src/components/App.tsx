@@ -4,6 +4,7 @@ import { FinalPour } from '../stages/FinalPour';
 import { FinishingUp } from '../stages/FinishingUp';
 import { Preparation } from '../stages/Preparation';
 import { SixtyPercentPour } from '../stages/SixtyPercentPour';
+import { CoffeeControl } from './CoffeeControl';
 
 const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
 	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
@@ -77,18 +78,7 @@ export const App = (): JSX.Element => {
 		<div>
 			<h1>James Hoffmann&apos;s Ultimate V60 Technique</h1>
 
-			<label htmlFor="coffee">
-				Coffee (g)
-				<input
-					id="coffee"
-					name="coffee"
-					type="number"
-					min="6"
-					max="60"
-					defaultValue={defaultCoffeeWeight}
-					onChange={(e) => handleCoffeeChange(e.currentTarget)}
-				/>
-			</label>
+			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} handleCoffeeChange={handleCoffeeChange} />
 
 			<Preparation coffeeWeight={coffeeWeight} />
 
