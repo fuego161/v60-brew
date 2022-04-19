@@ -1,10 +1,32 @@
 .instructions {
+	list-style: none;
+	padding-left: .4em;
+
 	&__item {
 		margin-top: .75em;
+
+		// Add a min height the li, so the full image can be seen
+		min-height: 20px;
+		// Space out the li content from the icon
+		padding-left: 1.85em;
+		// Add the icon
+		background-image: url('../../img/icons/coffee-bullet.svg');
+		// Set the size of the new icon marker
+		background-size: 20px;
+		// Make it so it doesn't repeat
+		background-repeat: no-repeat;
+		// Nudge the icon marker down slightly to center
+		background-position: 0 3px;
 
 		strong {
 			color: color(coffee-light);
 			font-weight: 500;
+		}
+
+		&--timer {
+			// Fallback to 00
+			background-image: url('../../img/icons/timer-00.svg');
+			background-position: 0 2px;
 		}
 
 		&:first-of-type {
@@ -17,7 +39,21 @@
 		margin-top: .15em;
 		opacity: .7;
 		font-size: 95%;
-		line-height: 1.45;
+		line-height: 1.55;
 		font-style: italic;
+	}
+}
+
+.timer {
+	&--15 {
+		background-image: url('../../img/icons/timer-15.svg');
+	}
+
+	&--45 {
+		background-image: url('../../img/icons/timer-45.svg');
+	}
+
+	&--55 {
+		background-image: url('../../img/icons/timer-55.svg');
 	}
 }
