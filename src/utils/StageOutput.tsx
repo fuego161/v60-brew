@@ -3,29 +3,32 @@ import React from 'react';
 /**
  * Creates the instruction list for the stage. If timer is present for the section, it'll top the list
  *
- * @param timer - the values from the timer object. Whether it's present, and if so, the time at the start of the stage
- * @param instructions - an array of each instruction to be output
+ * @param stage - The content of the stage stored as an object
  * @returns the list of instructions
  */
-const createInstructionsList = (timer: Timer, instructions: Array<Instruction>): JSX.Element => {
+const createInstructionsList = (stage: StageContent): JSX.Element => {
+	const { instructions, timer } = stage;
+
 	// Set an array to store each instruction item
 	const instructionList: Array<JSX.Element> = [];
 
 	// If the timer is present, add it to the list first
-	if (timer.present && timer.time) {
+	if (timer) {
 		instructionList.push(
 			<li className="stage__item stage__item--timer" key="timer">
-				{timer.time}
+				{timer}
 			</li>
 		);
 	}
 
 	// Loop over each instruction
 	for (const [index, instruction] of instructions.entries()) {
+		const { copy, information } = instruction;
+
 		// Store the instruction as an li in the list array
 		instructionList.push(
 			<li className="stage__item" key={index}>
-				{instruction.copy} {instruction.information.present && <span className="stage__information">{instruction.information.copy}</span>}
+				{copy} {information && <span className="stage__information">{information}</span>}
 			</li>
 		);
 	}
@@ -41,7 +44,7 @@ const createInstructionsList = (timer: Timer, instructions: Array<Instruction>):
  */
 export const StageOutput = (stage: StageContent): JSX.Element => {
 	// Create the instruction list
-	const instructionList = createInstructionsList(stage.timer, stage.instructions);
+	const instructionList = createInstructionsList(stage);
 
 	// Return the stage section
 	return (

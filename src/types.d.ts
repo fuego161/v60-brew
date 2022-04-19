@@ -15,24 +15,15 @@ declare interface SixtyPercent {
 }
 
 // Stage Output
-declare interface Timer {
-	present: boolean;
-	time?: string;
-}
-
-declare interface Information {
-	present: boolean;
-	copy?: string | JSX.Element;
-}
 
 declare interface Instruction {
 	copy: string | JSX.Element;
-	information: Information;
+	information?: string | JSX.Element;
 }
 
 declare interface StageContent {
 	count: string;
 	title: string;
-	timer: Timer;
+	timer?: string;
 	instructions: Array<Instruction>;
 }
