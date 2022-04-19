@@ -79,7 +79,7 @@ export const App = (): JSX.Element => {
 		<div>
 			<Intro />
 
-			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} handleCoffeeChange={handleCoffeeChange} />
+			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} brewWeight={brewWeight} handleCoffeeChange={handleCoffeeChange} />
 
 			<Preparation coffeeWeight={coffeeWeight} />
 
