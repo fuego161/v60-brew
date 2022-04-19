@@ -19,7 +19,7 @@ export const SixtyPercentPour = ({ sixtyPercent }: SixtyPercentPourProps): JSX.E
 				),
 				information: (
 					<>
-						Here we are aiming for 60% of total brew weight (<strong>{sixtyPercent.total}g</strong>). <br /> This stage is critical
+						Here we are aiming for 60% of total brew weight (<strong>{sixtyPercent.total}g</strong>), this stage is critical
 					</>
 				),
 			},
