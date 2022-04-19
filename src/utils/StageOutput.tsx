@@ -14,8 +14,12 @@ const createInstructionsList = (stage: StageContent): JSX.Element => {
 
 	// If the timer is present, add it to the list first
 	if (timer) {
+		const timerEnd = timer.split(':')[1];
+
+		console.log(timerEnd);
+
 		instructionList.push(
-			<li className="instructions__item instructions__item--timer" key="timer">
+			<li className={`instructions__item instructions__item--timer timer--${timerEnd}`} key="timer">
 				{timer}
 			</li>
 		);
