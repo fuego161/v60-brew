@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calcBloom, calcBrewWeight, calcFinalPour, calcSixtyPercent } from '../utils';
+import { calcBloom, calcBrewWeight, calcFinalPour, calcSixtyPercent, createCookie, readCookie } from '../utils';
 import { CoffeeControl } from './CoffeeControl';
 import { Intro } from './Intro';
 import { Stages } from './Stages';
@@ -10,8 +10,11 @@ const brewRatio: BrewRatio = {
 	water: 250,
 };
 
+// Retrieve coffee value cookie if present
+const coffeeCookie = readCookie('v60-grams');
+
 // Set the default coffeeWeight
-const defaultCoffeeWeight = 30;
+const defaultCoffeeWeight = coffeeCookie ? parseInt(coffeeCookie) : 30;
 
 export const App = (): JSX.Element => {
 	// Set how much coffee is being used
@@ -58,6 +61,8 @@ export const App = (): JSX.Element => {
 			setFinalPour(updatedFinalPour);
 
 			setValidNumber(true);
+
+			createCookie('v60-grams', target.value);
 		} else {
 			setValidNumber(false);
 		}
