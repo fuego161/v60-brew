@@ -1,19 +1,73 @@
 .coffee {
+	margin-top: 1.5em;
 	background-color: color(coffee-dark);
 	border-radius: 10px;
 
 	&__selector {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		padding: .75em 1em;
 		background-color: color(coffee-light);
 		border-radius: 10px 10px 0 0;
 		color: color(coffee-dark);
 	}
 
-	&__label {
+	&__label,
+	&__input {
 		font-size: 1.35rem;
 		font-weight: 400;
+		margin: 0;
+	}
+
+	&__controls {
+		display: flex;
+		align-items: center;
+	}
+
+	&__input,
+	&__btn {
+		appearance: none;
+		margin: 0;
+		padding: 0;
+		background: none;
+		border: 0;
+		background-clip: padding-box;
+		border-radius: 0;
+		text-decoration: none;
+		box-shadow: none;
+		transition: .15s box-shadow;
+
+		&:active,
+		&:focus,
+		&:focus-visible {
+			outline: none;
+			box-shadow: rgba(color(coffee-dark), .4) 0px 0px 0px 2px, rgba(color(coffee-dark), .65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+		}
+	}
+
+	&__input {
+		-moz-appearance: textfield;
+		width: 45px;
+		text-align: center;
+		margin: 0 .6em;
+		border-radius: 2px;
+		cursor: text;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	&__btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		border-radius: 50%;
+		cursor: pointer;
 	}
 
 	&__output {
