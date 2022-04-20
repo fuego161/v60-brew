@@ -1,31 +1,8 @@
 import React, { useState } from 'react';
+import { calcBloom, calcBrewWeight, calcFinalPour, calcSixtyPercent } from '../utils';
 import { CoffeeControl } from './CoffeeControl';
 import { Intro } from './Intro';
 import { Stages } from './Stages';
-
-const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
-	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
-};
-
-const calcBloom = (coffeeWeight: number): Bloom => {
-	return {
-		recommended: coffeeWeight * 2,
-		maximum: coffeeWeight * 3,
-	};
-};
-
-const calcSixtyPercent = (brewWeight: number, bloom: Bloom): SixtyPercent => {
-	const sixtyPercentTotal = Math.floor((60 / 100) * brewWeight);
-
-	return {
-		total: sixtyPercentTotal,
-		pour: sixtyPercentTotal - bloom.recommended,
-	};
-};
-
-const calcFinalPour = (brewWeight: number, sixtyPercent: SixtyPercent): number => {
-	return brewWeight - sixtyPercent.total;
-};
 
 // Set the brew ratio - 60g/L
 const brewRatio: BrewRatio = {
