@@ -31,16 +31,16 @@ const calcFinalPour = (brewWeight: number, sixtyPercent: SixtyPercent): number =
 	return brewWeight - sixtyPercent.total;
 };
 
+// Set the brew ratio - 60g/L
+const brewRatio: BrewRatio = {
+	coffee: 15,
+	water: 250,
+};
+
+// Set the default coffeeWeight
+const defaultCoffeeWeight = 30;
+
 export const App = (): JSX.Element => {
-	// Set the brew ratio - 60g/L
-	const brewRatio: BrewRatio = {
-		coffee: 15,
-		water: 250,
-	};
-
-	// Set the default coffeeWeight
-	const defaultCoffeeWeight = 30;
-
 	// Set how much coffee is being used
 	const [coffeeWeight, setCoffeeWeight] = useState(defaultCoffeeWeight);
 
@@ -56,22 +56,38 @@ export const App = (): JSX.Element => {
 	// Set what will be the final pour amount
 	const [finalPour, setFinalPour] = useState(calcFinalPour(brewWeight, sixtyPercent));
 
+	// Set whether or not the current input is a valid number
+	const [validNumber, setValidNumber] = useState(true);
+
+	/**
+	 * Updates all values when the coffee amount changes
+	 *
+	 * @param target the input containing how much coffee we want to brew with
+	 */
 	const handleCoffeeChange = (target: HTMLInputElement): void => {
 		// Get the updated coffee value
 		const updatedCoffeeValue = parseInt(target.value);
 
-		// Store the updated pour data
-		const updatedBrewWeight = calcBrewWeight(brewRatio, updatedCoffeeValue);
-		const updatedBloom = calcBloom(updatedCoffeeValue);
-		const updatedSixtyPercent = calcSixtyPercent(updatedBrewWeight, updatedBloom);
-		const updatedFinalPour = calcFinalPour(updatedBrewWeight, updatedSixtyPercent);
+		const inRange = updatedCoffeeValue >= 6 && updatedCoffeeValue <= 60;
 
-		// Update the pour related data
-		setCoffeeWeight(updatedCoffeeValue);
-		setBrewWeight(updatedBrewWeight);
-		setBloom(updatedBloom);
-		setSixtyPercent(updatedSixtyPercent);
-		setFinalPour(updatedFinalPour);
+		if (!isNaN(updatedCoffeeValue) && inRange) {
+			// Store the updated pour data
+			const updatedBrewWeight = calcBrewWeight(brewRatio, updatedCoffeeValue);
+			const updatedBloom = calcBloom(updatedCoffeeValue);
+			const updatedSixtyPercent = calcSixtyPercent(updatedBrewWeight, updatedBloom);
+			const updatedFinalPour = calcFinalPour(updatedBrewWeight, updatedSixtyPercent);
+
+			// Update the pour related data
+			setCoffeeWeight(updatedCoffeeValue);
+			setBrewWeight(updatedBrewWeight);
+			setBloom(updatedBloom);
+			setSixtyPercent(updatedSixtyPercent);
+			setFinalPour(updatedFinalPour);
+
+			setValidNumber(true);
+		} else {
+			setValidNumber(false);
+		}
 	};
 
 	/**
@@ -100,6 +116,7 @@ export const App = (): JSX.Element => {
 			<CoffeeControl
 				defaultCoffeeWeight={defaultCoffeeWeight}
 				brewWeight={brewWeight}
+				validNumber={validNumber}
 				handleCoffeeChange={handleCoffeeChange}
 				handleCoffeeStep={handleCoffeeStep}
 			/>

@@ -3,11 +3,18 @@ import React from 'react';
 interface CoffeeControlProps {
 	defaultCoffeeWeight: number;
 	brewWeight: number;
+	validNumber: boolean;
 	handleCoffeeChange: (target: HTMLInputElement) => void;
 	handleCoffeeStep: (target: HTMLButtonElement) => void;
 }
 
-export const CoffeeControl = ({ defaultCoffeeWeight, brewWeight, handleCoffeeChange, handleCoffeeStep }: CoffeeControlProps): JSX.Element => {
+export const CoffeeControl = ({
+	defaultCoffeeWeight,
+	brewWeight,
+	validNumber,
+	handleCoffeeChange,
+	handleCoffeeStep,
+}: CoffeeControlProps): JSX.Element => {
 	return (
 		<div className="coffee">
 			<div className="coffee__selector">
@@ -37,7 +44,7 @@ export const CoffeeControl = ({ defaultCoffeeWeight, brewWeight, handleCoffeeCha
 						min="6"
 						max="60"
 						defaultValue={defaultCoffeeWeight}
-						onChange={(e) => handleCoffeeChange(e.currentTarget)}
+						onInput={(e) => handleCoffeeChange(e.currentTarget)}
 					/>
 
 					<button
@@ -59,7 +66,13 @@ export const CoffeeControl = ({ defaultCoffeeWeight, brewWeight, handleCoffeeCha
 			</div>
 
 			<div className="coffee__output">
-				Your total brew weight will be <strong>{brewWeight}g</strong>
+				{validNumber ? (
+					<>
+						Your total brew weight will be <strong>{brewWeight}g</strong>
+					</>
+				) : (
+					'Please enter a number between 6 and 60'
+				)}
 			</div>
 		</div>
 	);
