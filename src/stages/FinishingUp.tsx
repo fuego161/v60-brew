@@ -1,4 +1,3 @@
-import React from 'react';
 import { StageOutput } from '../utils';
 
 export const FinishingUp = (): JSX.Element => {
