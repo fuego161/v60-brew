@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { Bloom } from '../stages/Bloom';
-import { FinalPour } from '../stages/FinalPour';
-import { FinishingUp } from '../stages/FinishingUp';
-import { Preparation } from '../stages/Preparation';
-import { SixtyPercentPour } from '../stages/SixtyPercentPour';
 import { CoffeeControl } from './CoffeeControl';
 import { Intro } from './Intro';
+import { Stages } from './Stages';
 
 const calcBrewWeight = (brewRatio: BrewRatio, coffeeWeight: number): number => {
 	return Math.floor((brewRatio.water / brewRatio.coffee) * coffeeWeight);
@@ -121,15 +117,7 @@ export const App = (): JSX.Element => {
 				handleCoffeeStep={handleCoffeeStep}
 			/>
 
-			<Preparation coffeeWeight={coffeeWeight} />
-
-			<Bloom bloom={bloom} />
-
-			<SixtyPercentPour sixtyPercent={sixtyPercent} />
-
-			<FinalPour finalPour={finalPour} brewWeight={brewWeight} />
-
-			<FinishingUp />
+			<Stages coffeeWeight={coffeeWeight} bloom={bloom} sixtyPercent={sixtyPercent} finalPour={finalPour} brewWeight={brewWeight} />
 		</div>
 	);
 };
