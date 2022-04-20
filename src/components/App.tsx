@@ -42,7 +42,6 @@ export const App = (): JSX.Element => {
 	const defaultCoffeeWeight = 30;
 
 	// Set how much coffee is being used
-	// TODO: Update this value with user input
 	const [coffeeWeight, setCoffeeWeight] = useState(defaultCoffeeWeight);
 
 	// Set the brewWeight using the brewRatio
@@ -75,11 +74,35 @@ export const App = (): JSX.Element => {
 		setFinalPour(updatedFinalPour);
 	};
 
+	/**
+	 * Upon button click, find out the value and either step up or down the coffeeInput
+	 *
+	 * @param target The button clicked
+	 */
+	const handleCoffeeStep = (target: HTMLButtonElement): void => {
+		const coffeeInput = document.querySelector('.coffee__input') as HTMLInputElement;
+
+		const { value } = target;
+
+		if (value === 'increase' && coffeeInput) {
+			coffeeInput.stepUp();
+		} else {
+			coffeeInput.stepDown();
+		}
+
+		handleCoffeeChange(coffeeInput);
+	};
+
 	return (
 		<div className="wrapper">
 			<Intro />
 
-			<CoffeeControl defaultCoffeeWeight={defaultCoffeeWeight} brewWeight={brewWeight} handleCoffeeChange={handleCoffeeChange} />
+			<CoffeeControl
+				defaultCoffeeWeight={defaultCoffeeWeight}
+				brewWeight={brewWeight}
+				handleCoffeeChange={handleCoffeeChange}
+				handleCoffeeStep={handleCoffeeStep}
+			/>
 
 			<Preparation coffeeWeight={coffeeWeight} />
 
